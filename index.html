@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="asset/icon.png" type="image/x-icon">
+    <link href="https://iconsax.gitlab.io/i/icons.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <title>Tính Tiền Tua</title>
+</head>
+
+<body>
+    <main class="container-button">
+        <section class="card main-app-card" id="main-app-card">
+            <header class="dash-header">
+                <div class="dash-brand">
+                    <span class="dash-brand-icon" aria-hidden="true"><i class="iconsax" icon-name="pet"></i></span>
+                    <span class="dash-brand-name">Sunpet</span>
+                </div>
+                <p class="dash-tagline">Bảng tính tiền tua Sunpet</p>
+            </header>
+
+            <!-- Tab Selector Bar -->
+            <div class="main-tabs" role="tablist" aria-label="Chọn kiểu tính tiền">
+                <button type="button" class="main-tab is-active" id="tab-package" data-main-tab="package" role="tab" aria-selected="true" aria-controls="package-panel">
+                    <i class="iconsax" icon-name="note-text"></i> Liệu trình
+                </button>
+                <button type="button" class="main-tab" id="tab-retail" data-main-tab="retail" role="tab" aria-selected="false" aria-controls="retail-panel">
+                    <i class="iconsax" icon-name="scissors"></i> Cắt lẻ
+                </button>
+            </div>
+
+            <!-- Forms Content -->
+            <div class="main-tabs-content">
+                <!-- Form liệu trình -->
+                <div id="package-panel" class="tab-panel" role="tabpanel" aria-labelledby="tab-package">
+                    <form id="package-form" novalidate>
+                        <div class="form-control switch-control">
+                            <p class="group-label">Loại thú cưng</p>
+                            <div class="switch-row">
+                                <span class="pet-label pet-label-dog">Chó</span>
+                                <label class="switch custom-switch">
+                                    <input type="checkbox" id="package-pet" aria-label="Chọn chó hoặc mèo">
+                                    <span class="slider"></span>
+                                </label>
+                                <span class="pet-label pet-label-cat">Mèo</span>
+                            </div>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="package-weight">Cân nặng (kg)</label>
+                            <input type="text" inputmode="decimal" enterkeyhint="done" autocomplete="off" id="package-weight" name="weight" placeholder="Ví dụ: 3.5">
+                        </div>
+
+                        <div class="form-control">
+                            <label for="package-untangle-price">Giá gỡ rối</label>
+                            <input class="currency" type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" id="package-untangle-price" name="untangle_price" placeholder="Nếu có phụ phí">
+                        </div>
+
+                        <div class="tua_options_lt">
+                            <div class="form-control">
+                                <label for="package-tua">Chọn tua</label>
+                                <div class="custom-select" data-select-id="package-tua">
+                                    <select id="package-tua" name="tua" class="native-select-hidden">
+                                        <option class="option" value="10_buoc">10 bước</option>
+                                        <option class="option" value="12_buoc">12 bước</option>
+                                        <option class="option" value="18_buoc">18 bước</option>
+                                        <option class="option" value="cao">Cạo</option>
+                                        <option class="option" value="cat_tia">Cắt/Tỉa</option>
+                                    </select>
+                                    <button type="button" class="custom-select-trigger" id="package-tua-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="package-tua-options">
+                                        <span class="custom-select-label">Chọn tua</span>
+                                        <span class="custom-select-arrow" aria-hidden="true"></span>
+                                    </button>
+                                    <div class="custom-select-popup hidden" id="package-tua-options"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-control">
+                                <label for="package-loai-tua">Loại tua</label>
+                                <div class="custom-select" data-select-id="package-loai-tua">
+                                    <select id="package-loai-tua" name="loaiTua" class="native-select-hidden">
+                                        <option class="option" value="long_dai">Lông dài</option>
+                                        <option class="option" value="long_sat">Lông ngắn</option>
+                                        <option class="option" value="khong_long">Không lông</option>
+                                        <option class="option" value="day_du">Đầy đủ</option>
+                                        <option class="option" value="toan_dien">Toàn diện</option>
+                                    </select>
+                                    <button type="button" class="custom-select-trigger" id="package-loai-tua-trigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="package-loai-tua-options">
+                                        <span class="custom-select-label">Chọn loại tua</span>
+                                        <span class="custom-select-arrow" aria-hidden="true"></span>
+                                    </button>
+                                    <div class="custom-select-popup hidden" id="package-loai-tua-options"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-control checkbox-group" id="package-service-group" data-service-sheet>
+                            <button type="button" class="service-toggle" data-service-toggle aria-haspopup="dialog" aria-controls="package-service-sheet">
+                                <span class="service-toggle-copy">
+                                    <span class="service-toggle-label">Dịch vụ lẻ</span>
+                                    <span class="service-toggle-summary" data-service-summary>Chưa chọn dịch vụ</span>
+                                </span>
+                                <span class="service-toggle-icon" aria-hidden="true"></span>
+                            </button>
+                            <dialog class="service-sheet hidden" id="package-service-sheet" data-service-panel aria-labelledby="package-service-sheet-title">
+                                <div class="service-sheet-panel">
+                                    <div class="service-sheet-handle" aria-hidden="true"></div>
+                                    <div class="service-sheet-header">
+                                        <div>
+                                            <p class="section-chip">Dịch vụ lẻ</p>
+                                            <h3 class="service-sheet-title" id="package-service-sheet-title">Chọn dịch vụ bổ sung</h3>
+                                        </div>
+                                        <button type="button" class="secondary-button icon-button" data-service-close aria-label="Đóng dịch vụ lẻ">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="checkbox-group-content" data-service-options>
+                                <label class="checkbox-item"><input type="checkbox" value="danh_rang">Đánh răng</label>
+                                <label class="checkbox-item"><input type="checkbox" value="combo_vip">Combo Vip</label>
+                                <label class="checkbox-item"><input type="checkbox" value="tam_thao_moc">Tắm thảo mọc</label>
+                                <label class="checkbox-item"><input type="checkbox" value="tam_trang">Tắm trắng</label>
+                                <label class="checkbox-item"><input type="checkbox" value="hap_dau">Hấp dầu</label>
+                                <label class="checkbox-item"><input type="checkbox" value="spa_express">Spa Express</label>
+                                <label class="checkbox-item"><input type="checkbox" value="tam_ve">Tắm ve</label>
+                                <label class="checkbox-item"><input type="checkbox" value="tay_cau">Tẩy dầu</label>
+                                    </div>
+                                </div>
+                            </dialog>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit">Xem kết quả liệu trình</button>
+                        </div>
+                        <div class="form-utility-actions">
+                            <button type="button" class="secondary-button" id="show-price-grid">Xem bảng giá</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Form cắt lẻ -->
+                <div id="retail-panel" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-retail">
+                    <form id="retail-form" novalidate>
+                        <div class="form-control">
+                            <label for="retail-price">Giá tiền</label>
+                            <input class="currency" type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" id="retail-price" name="price" placeholder="Ví dụ: 120">
+                        </div>
+
+                        <div class="form-control">
+                            <label for="retail-untangle-price">Giá gỡ rối</label>
+                            <input class="currency" type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" id="retail-untangle-price" name="untangle_price" placeholder="Nếu có phụ phí">
+                        </div>
+
+                        <div class="form-control">
+                            <label for="retail-percent">Phần trăm</label>
+                            <input type="text" inputmode="numeric" enterkeyhint="done" autocomplete="off" id="retail-percent" name="percent" placeholder="Ví dụ: 35">
+                        </div>
+
+                        <div class="form-control checkbox-group" id="retail-service-group" data-service-sheet>
+                            <button type="button" class="service-toggle" data-service-toggle aria-haspopup="dialog" aria-controls="retail-service-sheet">
+                                <span class="service-toggle-copy">
+                                    <span class="service-toggle-label">Dịch vụ lẻ</span>
+                                    <span class="service-toggle-summary" data-service-summary>Chưa chọn dịch vụ</span>
+                                </span>
+                                <span class="service-toggle-icon" aria-hidden="true"></span>
+                            </button>
+                            <dialog class="service-sheet hidden" id="retail-service-sheet" data-service-panel aria-labelledby="retail-service-sheet-title">
+                                <div class="service-sheet-panel">
+                                    <div class="service-sheet-handle" aria-hidden="true"></div>
+                                    <div class="service-sheet-header">
+                                        <div>
+                                            <p class="section-chip">Dịch vụ lẻ</p>
+                                            <h3 class="service-sheet-title" id="retail-service-sheet-title">Chọn dịch vụ bổ sung</h3>
+                                        </div>
+                                        <button type="button" class="secondary-button icon-button" data-service-close aria-label="Đóng dịch vụ lẻ">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="checkbox-group-content" data-service-options>
+                                <label class="checkbox-item"><input type="checkbox" value="7000">Đánh răng</label>
+                                <label class="checkbox-item"><input type="checkbox" value="8000">Combo Vip</label>
+                                <label class="checkbox-item"><input type="checkbox" value="10000">Tắm thảo mọc</label>
+                                <label class="checkbox-item"><input type="checkbox" value="10000">Tắm trắng</label>
+                                <label class="checkbox-item"><input type="checkbox" value="10000">Hấp dầu</label>
+                                <label class="checkbox-item"><input type="checkbox" value="10000">Spa Express</label>
+                                <label class="checkbox-item"><input type="checkbox" value="10000">Tắm ve</label>
+                                <label class="checkbox-item"><input type="checkbox" value="15000">Tẩy dầu</label>
+                                    </div>
+                                </div>
+                            </dialog>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit">Xem kết quả cắt lẻ</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Kết quả -->
+        <dialog class="result-card hidden" id="result-card">
+            <div class="result-panel card">
+                <div class="result-header">
+                    <p class="section-chip">Kết quả</p>
+                </div>
+                <div class="result-content" id="result-content">
+                    Vui lòng nhập dữ liệu và chọn nút gửi.
+                </div>
+                <div class="result-actions">
+                    <button type="button" class="secondary-button" id="cancel-result">Huỷ</button>
+                    <button type="button" id="reset-result">Nhập lại</button>
+                </div>
+            </div>
+        </dialog>
+
+        <!-- Bảng giá -->
+        <dialog class="price-grid-card hidden" id="price-grid-card">
+            <div class="price-grid-panel card">
+                <div class="price-grid-header">
+                    <div class="price-grid-meta">
+                        <div>
+                        <p class="section-chip">Bảng giá</p>
+                        <h2 class="price-grid-title">Bảng giá Sunpet</h2>
+                        </div>
+                        <div class="price-grid-tabs" role="tablist" aria-label="Chọn bảng giá thú cưng">
+                            <button type="button" class="price-grid-tab is-active" id="price-tab-cho" data-price-tab="cho" role="tab" aria-selected="true" aria-controls="price-grid-content">Chó</button>
+                            <button type="button" class="price-grid-tab" id="price-tab-meo" data-price-tab="meo" role="tab" aria-selected="false" aria-controls="price-grid-content">Mèo</button>
+                        </div>
+                    </div>
+                    <button type="button" class="secondary-button icon-button" id="close-price-grid" aria-label="Đóng bảng giá">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Đóng bảng giá</span>
+                    </button>
+                </div>
+                <div class="price-grid-body" id="price-grid-content"></div>
+            </div>
+        </dialog>
+    </main>
+    <script type="application/javascript" src="script.js"></script>
+</body>
+
+</html>
