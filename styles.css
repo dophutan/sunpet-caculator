@@ -147,8 +147,7 @@ body {
 }
 
 .dash-brand-icon i {
-    transform: none;
-    rotate: 0deg;
+    rotate: 45deg;
 }
 
 .dash-brand-name {
@@ -1138,6 +1137,14 @@ dialog.price-grid-card::backdrop {
     background: rgba(98, 43, 20, 0.02);
 }
 
+.price-grid-table td.is-highlighted {
+    background: var(--accent-soft) !important;
+    color: var(--accent-strong);
+    font-weight: 700;
+    position: relative;
+    box-shadow: inset 0 0 0 2px var(--accent);
+}
+
 .price-grid-meta {
     display: flex;
     align-items: center;
@@ -1274,9 +1281,195 @@ button:active {
     }
 }
 
+/* Desktop and larger screens */
+@media (min-width: 1025px) {
+    .container-button {
+        width: min(100%, 580px);
+    }
+
+    .price-grid-panel {
+        width: min(90vw, 1000px);
+    }
+
+    .result-panel {
+        width: min(85vw, 640px);
+    }
+}
+
 @media (max-width: 860px) {
     .price-grid-caption {
         display: block;
+    }
+}
+
+/* Tablet responsive styles (iPad and similar devices) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    body {
+        padding: 20px;
+    }
+
+    .container-button {
+        width: min(100%, 680px);
+    }
+
+    .main-app-card {
+        border-radius: 28px;
+    }
+
+    .dash-header {
+        padding: 28px 28px 18px;
+    }
+
+    .main-tabs {
+        padding-left: 28px;
+        padding-right: 28px;
+        top: 92px;
+    }
+
+    .main-app-card .main-tabs-content {
+        padding: 0 28px 28px;
+    }
+
+    .card {
+        padding: 32px;
+    }
+
+    .form-control {
+        margin-bottom: 20px;
+    }
+
+    .tua_options_lt {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+
+    .service-toggle {
+        padding: 16px 18px;
+    }
+
+    .result-panel {
+        width: min(90vw, 600px);
+        padding: 28px;
+    }
+
+    .result-content {
+        padding: 20px;
+    }
+
+    .result-summary-value {
+        font-size: 1.6rem;
+    }
+
+    .result-row {
+        padding: 14px 16px;
+    }
+
+    .price-grid-panel {
+        width: min(92vw, 900px);
+        max-height: 85vh;
+        padding: 28px;
+    }
+
+    .price-grid-header {
+        margin-bottom: 22px;
+    }
+
+    .price-grid-title {
+        font-size: 1.5rem;
+    }
+
+    .price-grid-tabs {
+        gap: 10px;
+    }
+
+    .price-grid-tab {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .price-grid-table {
+        font-size: 0.92rem;
+    }
+
+    .price-grid-table th,
+    .price-grid-table td {
+        padding: 11px 14px;
+    }
+
+    .service-sheet-panel {
+        width: min(85vw, 520px);
+        padding: 20px 18px calc(24px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .checkbox-group-content {
+        gap: 12px;
+    }
+
+    .checkbox-item {
+        min-height: 58px;
+        padding: 14px 16px;
+        font-size: 0.95rem;
+    }
+
+    button {
+        padding: 15px 28px;
+        font-size: 1rem;
+    }
+
+    .form-actions {
+        margin-top: 24px;
+    }
+
+    .result-actions {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 22px;
+    }
+
+    .switch-row {
+        gap: 16px;
+    }
+
+    .custom-switch {
+        width: 56px;
+        height: 30px;
+    }
+
+    .slider:before {
+        width: 24px;
+        height: 24px;
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+    .pet-label {
+        font-size: 1rem;
+        min-width: 80px;
+    }
+}
+
+/* Landscape tablet optimization */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    .container-button {
+        width: min(100%, 720px);
+    }
+
+    .price-grid-panel {
+        max-height: 80vh;
+    }
+
+    .result-panel {
+        max-height: 75vh;
+    }
+
+    .result-details {
+        max-height: 45vh;
     }
 }
 
